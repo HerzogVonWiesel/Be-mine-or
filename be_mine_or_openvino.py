@@ -99,26 +99,23 @@ det_model.predictor.inference = infer
 det_model.predictor.model.pt = False
 
 # object classes
-classNames = ["NONE", "holding-hands", "hugging", "kissing"]
-noiseVolumes = [1.0, 0.6, 0.3, 0.0]
-zenVolumes = [0.0, 0.0, 0.3, 1.0]
+classNames = ["no affection", "holding hands", "hugging", "kissing"]
+noiseVolumes = [1.0, 0.6, 0.15, 0.0]
+zenVolumes = [0.0, 0.0, 0.6, 1.0]
 
 noisePlayer = AudioPlayer("city_noise.mp3")
 zenPlayer = AudioPlayer("zen.mp3")
 
-# use webcam to classify image
 while True:
+    # use webcam to classify image
     ret, frame = cap.read()
     if not ret:
         break
 
-    # change frame to RGB
     # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # Make predictions
     results = det_model(frame, verbose=False, stream=True)
 
-    # Process classification results, not detection
     for result in results:
         cls = result.probs.top1
         conf = result.probs.top1conf
@@ -130,11 +127,9 @@ while True:
             zenPlayer.set_volume(zenVolume)
             label = f'{classNames[cls]}: {conf:.2f}'
             cv2.putText(frame, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-            #cv2.putText(frame, str(noiseVolume), (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (90, 90, 255), 2)
-            cv2.putText(frame, str(noisePlayer.volume), (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (90, 255, 90), 2)
-            cv2.putText(frame, str(zenPlayer.volume), (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 90, 90), 2)
+            cv2.putText(frame, "NoiseVol:"+str(noisePlayer.volume), (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (90, 90, 255), 2)
+            cv2.putText(frame, "CalmVol:"+str(zenPlayer.volume), (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 90, 90), 2)
 
-    # Display the frame
     cv2.imshow('Webcam', frame)
     time.sleep(0.9)
 
