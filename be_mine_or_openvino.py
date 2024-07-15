@@ -4,8 +4,6 @@ import cv2
 import numpy as np
 import pyaudio
 from pydub import AudioSegment
-from pydub.playback import play
-import simpleaudio as sa
 import threading
 import time
 
