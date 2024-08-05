@@ -1,6 +1,6 @@
 # Be-mine(or)
 
-This is the repository of the art installation called Be-mine(or) by (Marvin) Jerome Stephan.
+This is the repository of the art installation called Be-mine(or) by (Marvin) Jerome Stephan. For more information about the project, feel free to visit [its website](https://jeromestephan.de/projects/bemineor).
 
 ## Table of Contents
 - [Be-mine(or)](#be-mineor)

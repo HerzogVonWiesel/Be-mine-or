@@ -85,8 +85,8 @@ classNames = ["no affection", "holding hands", "hugging", "kissing"]
 noiseVolumes = [1.0, 0.6, 0.15, 0.0]
 zenVolumes = [0.0, 0.0, 0.6, 1.0]
 
-noisePlayer = AudioPlayer("city_noise.mp3")
-zenPlayer = AudioPlayer("zen.mp3")
+noisePlayer = AudioPlayer("audio/city_noise.mp3")
+zenPlayer = AudioPlayer("audio/zen.mp3")
 
 # use webcam to classify image
 while True:
